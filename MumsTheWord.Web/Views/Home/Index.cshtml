@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    @model MumsTheWord.Web.Models.HomeViewModel
 }
 
 <div class="jumbotron">
@@ -7,6 +8,11 @@
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
+
+@foreach (var result in Model.Results)
+{
+    <img src="http://maps.googleapis.com/maps/api/staticmap?center=@result.Geometry.Location.Lat,@result.Geometry.Location.Lng&zoom=15&size=1200x200&maptype=roadmap&markers=color:red%7C@(result.Geometry.Location.Lat),@result.Geometry.Location.Lng&key=AIzaSyB4rfkrAh7uq4s9L1AcVNDw_g_zuKjl_cg" alt="Belfast Connswater" />
+}
 
 <div class="row">
     <div class="col-md-4">

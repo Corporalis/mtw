@@ -18,14 +18,14 @@
 
 namespace MumsTheWord.Web.DependencyResolution {
     using StructureMap;
-    using MumsTheWord.Web.Test;
+    using Services;
 
     public static class IoC {
         public static IContainer Initialize() {
             var container = new Container(c => c.AddRegistry<DefaultRegistry>());
             container.Configure(x =>
             {
-                x.For<ITester>().Use<Tester>();
+                x.For<IApiClient>().Use<ApiClient>();
             });
             return container;
         }

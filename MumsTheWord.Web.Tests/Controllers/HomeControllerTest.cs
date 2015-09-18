@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MumsTheWord.Web;
 using MumsTheWord.Web.Controllers;
+using MumsTheWord.Web.Services;
 
 namespace MumsTheWord.Web.Tests.Controllers
 {
@@ -16,10 +17,11 @@ namespace MumsTheWord.Web.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApiClient());
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var actionResult = controller.Index().Result;
+            ViewResult result = actionResult as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -29,7 +31,7 @@ namespace MumsTheWord.Web.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApiClient());
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -42,7 +44,7 @@ namespace MumsTheWord.Web.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new ApiClient());
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
